@@ -1,0 +1,38 @@
+type Survey {
+  _id: String!
+  title: String!
+  token: String!
+  questions: [Question]!
+  isDeleted: Boolean!
+}
+
+type Question {
+  title: String!
+  inputType: String!
+  inputSpec: String!
+  # choices
+}
+
+
+type Query {
+  survey(_id: String!): Survey!
+  surveys: [Survey!]!
+}
+
+input SurveyInput{
+  title: String!
+  token: String!
+  questions: [QuestionInput!]
+}
+
+input QuestionInput{
+  title: String!
+  inputType: String!
+  inputSpec: String!
+}
+
+type Mutation {
+  createSurvey(input: SurveyInput): Survey!
+  updateSurvey(_id: String!, input: SurveyInput): Survey!
+  deleteSurvey(_id: String!): Survey!
+}
